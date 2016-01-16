@@ -9,8 +9,16 @@ body {
   padding: 0;
 }
 
-.u-center {
+.u-middle {
   vertical-align: middle;
+}
+
+.center-block {
+  text-align: center;
+}
+
+.u-margin {
+  margin-left: .5em;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
