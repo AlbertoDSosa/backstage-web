@@ -1,0 +1,61 @@
+<form name="equipForm" ng-submit="equipForm.$valid && save(equipament)" novalidate class="">
+  <div class="modal-header">
+    <h3 class="modal-title">Añadir nuevo equipo</h3>
+  </div>
+
+  <div class="modal-body">
+    <div class="form-group">
+      <label for="id">Identificador</label>
+      <input type="text" ng-model="equipament.id" class="form-control" id="id" placeholder="Identificador" required>
+    </div>
+
+    <div class="form-group">
+      <label for="name">Nombre del equipo</label>
+      <input type="text" ng-model="equipament.name" class="form-control" id="name" placeholder="Nombre del equipo" required >
+    </div>
+
+    <div class="form-group">
+      <label for="feature">Función</label>
+      <select class="form-control" id="feature" ng-model="equipament.feature" required>
+        <option value="Sonido">Sonido</option>
+        <option value="Video">Video</option>
+        <option value="Luces">Luces</option>
+        <option value="Electricidad">Electricidad</option>
+        <option value="Informática">Informática</option>
+        <option value="Estructuras">Estructuras</option>
+        <option value="Seguridad">Seguridad</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="quantity">Cantidad</label>
+      <input type="number" ng-model="equipament.quantity" class="form-control" id="quantity" placeholder="Cantidad">
+    </div>
+
+    <div class="form-group">
+      <label for="brand">Marca</label>
+      <input type="text" ng-model="equipament.brand" class="form-control" id="brand" placeholder="Marca">
+    </div>
+
+    <div class="form-group">
+      <label for="model">Modelo</label>
+      <input type="text" ng-model="equipament.model" class="form-control" id="model" placeholder="Modelo">
+    </div>
+
+    <div class="form-group">
+      <label for="description">Descripción</label>
+      <textarea class="form-control" rows="3" id="description"></textarea>
+    </div>
+
+    <!-- <div class="form-group">
+      <label for="photo">Foto</label>
+      <input type="file" ng-model="equipament.photo" class="form-control" id="photo" placeholder="Foto">
+    </div> -->
+
+
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancelar</button>
+  </div>
+</form>

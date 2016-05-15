@@ -9,10 +9,9 @@
  */
 angular.module('backstageApp')
   .factory('Users', function ($resource) {
-    // Service logic
     return $resource('http://localhost:5000/users', {}, {
-        query: { method:'GET', isArray:true }
-      });
+      query: { method:'GET', isArray:true }
+    });
   })
   .factory('User', function ($resource) {
     return $resource('http://localhost:5000/user/:userId', {}, {

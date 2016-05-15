@@ -31,9 +31,20 @@ angular
         controller: 'UsersCtrl',
         controllerAs: 'user'
       })
+      .when('/equipos', {
+        templateUrl: 'views/equipos.html',
+        controller: 'EquipamentCtrl',
+        controllerAs: 'equip'
+      })
+      .when('/eventos', {
+        templateUrl: 'views/show.html',
+        controller: 'ShowCtrl',
+        controllerAs: 'show'
+      })
       .otherwise({
         redirectTo: '/'
       });
 
        $resourceProvider.defaults.stripTrailingSlashes = false;
+
   });

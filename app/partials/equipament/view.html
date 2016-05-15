@@ -1,0 +1,36 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{equipament.name}}</h4>
+</div>
+<div class="modal-body">
+  <div class="table-responsive">
+    <table class="table">
+        <tr>
+          <td><strong>id</strong></td>
+          <td>{{equipament.id}}</td>
+        </tr>
+        <tr>
+          <td><strong>Función</strong></td>
+          <td>{{equipament.feature}}</td>
+        </tr>
+        <tr>
+          <td><strong>Marca</strong></td>
+          <td>{{equipament.brand}}</td>
+        </tr>
+        <tr>
+          <td><strong>Modelo</strong></td>
+          <td>{{equipament.model}}</td>
+        </tr>
+        <tr>
+          <td><strong>Cantidad</strong></td>
+          <td>{{equipament.quantity}}</td>
+        </tr>
+        <tr>
+          <td><strong>Descripción</strong></td>
+          <td>{{equipament.description}}</td>
+        </tr>
+    </table>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-warning" type="button" ng-click="cancel()">Cerrar</button>
+ </div>

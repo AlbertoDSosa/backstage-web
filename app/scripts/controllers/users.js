@@ -30,7 +30,7 @@ angular.module('backstageApp')
       var separator = id.split('_');
       var index = separator[1];
       var user = $scope.users[index];
-      return  user;
+      return user;
     }
 
     $scope.openAddUser = function () {
@@ -88,9 +88,9 @@ angular.module('backstageApp')
     $scope.user = renderedUser;
 
     $scope.update = function (user) {
-      console.log(user);
+
       User.update({userId: renderedUser.userId}, user, function (res, err) {
-        console.log(res);
+
         if(res.$resolved){
           $route.reload();
           $uibModalInstance.close();

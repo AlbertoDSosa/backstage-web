@@ -1,0 +1,87 @@
+<form name="showForm" ng-submit="showForm.$valid && save(show)" novalidate class="">
+  <div class="modal-header">
+    <h3 class="modal-title">Añadir nuevo evento</h3>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <label for="id">Identificador</label>
+      <input type="text" ng-model="show.id" class="form-control" id="id" placeholder="Identificador" required>
+    </div>
+
+    <div class="form-group">
+      <label for="name">Nombre del evento</label>
+      <input type="text" ng-model="show.name" class="form-control" id="name" placeholder="Nombre del equipo" required>
+    </div>
+
+    <div class="form-group">
+      <label for="place">Lugar</label>
+      <input type="text" ng-model="show.place" class="form-control" id="place" placeholder="Lugar" required>
+    </div>
+
+    <div class="form-group">
+      <label for="makedBy">Preparado por</label>
+      <input type="text" ng-model="show.makedBy" class="form-control" id="mackedBy" placeholder="Preparado por" required>
+    </div>
+
+    <div class="form-group">
+      <label for="chekedBy">Revisado por</label>
+      <input type="text" ng-model="show.chekedBy" class="form-control" id="chekedBy" placeholder="Revisado por" required>
+      <br />
+      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        Lista de equipos y material <span class="badge">{{show.equipaments.length}}</span>
+      </button>
+      <br />
+      <div class="collapse" id="collapseExample">
+         <br />
+        <ul class="list-group" ng-repeat=" material in show.equipaments">
+          <li class="list-group-item">{{material.name}}, {{material.brand}}, {{material.model}}</li>
+        </ul>
+      </div>
+
+    <div class="form-group">
+
+      <p><strong>Filtrar:</strong></p>
+
+      <select class="form-control" ng-change="filter()" ng-model="filterSearch">
+        <option value="Sonido">Sonido</option>
+        <option value="Video">Video</option>
+        <option value="Luces">Luces</option>
+        <option value="Electricidad">Electricidad</option>
+        <option value="Informática">Informática</option>
+        <option value="Estructuras">Estructuras</option>
+        <option value="Seguridad">Seguridad</option>
+      </select>
+    </div>
+
+    <div class="input-group">
+      <span class="input-group-addon glyphicon glyphicon-search" id="addon"></span>
+      <input ng-model="searchTerm" ng-keyup="search()" type="text" class="form-control" placeholder="Buscar" aria-describedby="addon">
+    </div>
+    <br />
+    <div clas="table-responsive">
+    <table class="table">
+      <tr>
+        <th>Nombre</th>
+        <th>Marca</th>
+        <th>Modelo</th>
+        <th>Opciones</th>
+      </tr>
+
+      <tr ng-repeat="equipament in equipaments">
+        <td>{{equipament.name}}</td>
+        <td class="u-middle">{{equipament.name}}</td>
+        <td class="u-middle">{{equipament.model}}</td>
+        <td class="u-middle">
+          <span id="{{'add_' + $index}}" ng-click="addEquip($event)" class=" u-margin u-middle glyphicon glyphicon-plus-sign"></span>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  </div>
+
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancelar</button>
+  </div>
+</form>

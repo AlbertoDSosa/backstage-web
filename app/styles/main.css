@@ -10,7 +10,11 @@ body {
 }
 
 .u-middle {
-  vertical-align: middle;
+  vertical-align: middle !important;
+}
+
+.margin-login{
+  margin-top: 2em;
 }
 
 .center-block {

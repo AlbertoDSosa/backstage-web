@@ -1,24 +1,27 @@
+<navbar></navbar>
 
-<p>Añadir nuevo usuario <i ng-click="openAddUser()" class=" u-margin u-middle glyphicon glyphicon-plus-sign"></i></p>
+<div class="container">
+  <p>Añadir nuevo usuario <i ng-click="openAddUser()" class=" u-margin u-middle glyphicon glyphicon-plus-sign"></i></p>
 
-<div clas="table-responsive">
-  <table class="table">
-    <tr>
-      <th>#</th>
-      <th>Nombre</th>
-      <th>Opciones</th>
-    </tr>
+  <div clas="table-responsive">
+    <table class="table">
+      <tr>
+        <th>#</th>
+        <th>Nombre</th>
+        <th>Opciones</th>
+      </tr>
 
-    <tr ng-repeat="user in users">
-      <td>{{$index + 1}}</td>
-      <td>{{user.firstName}} {{user.lastName}}</td>
-      <td>
-        <span class="glyphicon glyphicon-eye-open"></span>
-        <span id="{{'edit_' + $index}}" ng-click="openUpdateUser($event)" class="u-margin glyphicon glyphicon-pencil"></span>
-        <span id="{{'rm_' + $index}}" ng-click="openRemoveUser($event)" class="u-margin glyphicon glyphicon-trash"></span>
-      </td>
-    </tr>
+      <tr ng-repeat="user in users">
+        <td>{{$index + 1}}</td>
+        <td>{{user.firstName}} {{user.lastName}}</td>
+        <td>
+          <span class="glyphicon glyphicon-eye-open"></span>
+          <span id="{{'edit_' + $index}}" ng-click="openUpdateUser($event)" class="u-margin glyphicon glyphicon-pencil"></span>
+          <span id="{{'rm_' + $index}}" ng-click="openRemoveUser($event)" class="u-margin glyphicon glyphicon-trash"></span>
+        </td>
+      </tr>
 
-  </table>
+    </table>
+  </div>
 </div>
 
