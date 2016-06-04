@@ -21,6 +21,7 @@ angular.module('backstageApp')
         };
 
       $scope.equipaments = equipaments;
+
       });
     };
 

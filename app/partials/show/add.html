@@ -32,31 +32,18 @@
       </button>
       <br />
       <div class="collapse" id="collapseExample">
-         <br />
+        <br />
         <ul class="list-group" ng-repeat=" material in show.equipaments">
-          <li class="list-group-item">{{material.name}}, {{material.brand}}, {{material.model}}</li>
+          <li class="list-group-item">{{material.name}}, {{material.brand}}, {{material.model}} </li> <input type="number" class="form-control">
         </ul>
       </div>
-
+      <br />
     <div class="form-group">
 
-      <p><strong>Filtrar:</strong></p>
+      <equip-filter></equip-filter>
 
-      <select class="form-control" ng-change="filter()" ng-model="filterSearch">
-        <option value="Sonido">Sonido</option>
-        <option value="Video">Video</option>
-        <option value="Luces">Luces</option>
-        <option value="Electricidad">Electricidad</option>
-        <option value="Informática">Informática</option>
-        <option value="Estructuras">Estructuras</option>
-        <option value="Seguridad">Seguridad</option>
-      </select>
     </div>
 
-    <div class="input-group">
-      <span class="input-group-addon glyphicon glyphicon-search" id="addon"></span>
-      <input ng-model="searchTerm" ng-keyup="search()" type="text" class="form-control" placeholder="Buscar" aria-describedby="addon">
-    </div>
     <br />
     <div clas="table-responsive">
     <table class="table">

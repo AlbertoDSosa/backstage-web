@@ -2,25 +2,9 @@
 <div class="container">
   <p>Añadir nuevo equipo <i ng-click="openAddEquip()" class=" u-margin u-middle glyphicon glyphicon-plus-sign"></i></p>
 
-  <p><strong>Filtrar:</strong></p>
-  <form class="form-inline">
-    <div class="form-group">
-      <select class="form-control" ng-change="filter()" ng-model="filterSearch">
-        <option value="Sonido">Sonido</option>
-        <option value="Video">Video</option>
-        <option value="Luces">Luces</option>
-        <option value="Electricidad">Electricidad</option>
-        <option value="Informática">Informática</option>
-        <option value="Estructuras">Estructuras</option>
-        <option value="Seguridad">Seguridad</option>
-      </select>
-    </div>
-
-    <div class="input-group">
-      <span class="input-group-addon glyphicon glyphicon-search" id="addon"></span>
-      <input ng-model="searchTerm" ng-keyup="search()" type="text" class="form-control" placeholder="Buscar" aria-describedby="addon">
-    </div>
-  </form>
+  <div class="form-inline">
+   <equip-filter></equip-filter>
+  </div>
 
   <br />
 
