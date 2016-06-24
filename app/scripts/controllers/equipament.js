@@ -9,78 +9,55 @@
  */
 
 angular.module('backstageApp')
-  .controller('EquipamentCtrl', function ($scope, Equipaments, $uibModal) {
+  .controller('EquipamentCtrl', function ($scope, Equipaments, helpers) {
 
-    $scope.filter = function () {
-      Equipaments.query({ feature: $scope.filterSearch}, function (equipaments) {
-        $scope.search = function () {
-          $scope.equipaments = equipaments.filter(function (element) {
-            var name = element && element.name || '';
-            return name.toLowerCase().indexOf($scope.searchTerm.toLowerCase()) !== -1;
-          });
-        };
+    $scope.filter = function (filterSearch) {
+      var equipaments = helpers.filter(Equipaments, {feature: filterSearch});
+      $scope.search = function (searchTerm) {
+        $scope.equipaments = helpers.search(equipaments, searchTerm);
+      };
 
       $scope.equipaments = equipaments;
 
-      });
     };
-
-    function onOpen (file, ctrl, size, obj) {
-      $uibModal.open({
-        animation: true,
-        templateUrl: '../partials/equipament/'+ file +'.html',
-        controller: ctrl,
-        size: size,
-        resolve: {
-          renderedEquip: function () {
-            return obj;
-          }
-        }
-      });
-    }
-
-    function getEquip (event) {
-      var id = event.target.id;
-      var separator = id.split('_');
-      var index = separator[1];
-      var equipament = $scope.equipaments[index];
-      return equipament;
-    }
 
     $scope.openAddEquip = function () {
-      onOpen('add', 'addEquipFormCtrl', 'lg', {});
+      helpers.openModal('equipament', 'add', 'addEquipFormCtrl', 'lg');
     };
 
-    $scope.openRemoveEquip = function (event) {
-      var equipament = getEquip(event);
-      onOpen('remove', 'removeEquipAlertCtrl', 'sm', equipament);
+    $scope.openRemoveEquip = function (event, equipaments) {
+      var equipament = helpers.getObject(event, equipaments);
+      helpers.openModal('equipament', 'remove', 'removeEquipAlertCtrl', 'sm', equipament);
     };
 
-    $scope.openUpdateEquip = function (event) {
-      var equipament = getEquip(event);
-      onOpen('update', 'updateEquipCtrl', 'lg', equipament);
+    $scope.openUpdateEquip = function (event, equipaments) {
+      var equipament = helpers.getObject(event, equipaments);
+      helpers.openModal('equipament', 'update', 'updateEquipCtrl', 'lg', equipament);
     };
 
-    $scope.openViewEquip = function (event) {
-      var equipament = getEquip(event);
-      onOpen('view', 'viewEquipCtrl', 'lg', equipament);
+    $scope.openViewEquip = function (event, equipaments) {
+      var equipament = helpers.getObject(event, equipaments);
+      helpers.openModal('equipament', 'view', 'viewEquipCtrl', 'lg', equipament);
     };
   })
-  .controller('viewEquipCtrl', function ($scope, $uibModalInstance, renderedEquip) {
-    $scope.equipament = renderedEquip;
+  .controller('viewEquipCtrl', function ($scope, $uibModalInstance, resource) {
+    var modal = $uibModalInstance;
+
+    $scope.equipament = resource;
 
     $scope.cancel = function () {
-      $uibModalInstance.dismiss('cancel');
+      modal.dismiss('cancel');
     };
   })
   .controller('addEquipFormCtrl', function ($scope, $uibModalInstance, Equipament, $route) {
+    var modal = $uibModalInstance;
 
     $scope.save = function (equipament) {
 
       Equipament.save(equipament, function (res, err) {
         if(res.$resolved){
           $route.reload();
-          $uibModalInstance.close();
+          modal.close();
         } else {
           $scope.error = err;
         }
@@ -88,17 +65,18 @@ angular.module('backstageApp')
     };
 
     $scope.cancel = function () {
-      $uibModalInstance.dismiss('cancel');
+      modal.dismiss('cancel');
     };
 
   })
-  .controller('removeEquipAlertCtrl', function ($scope, Equipament, $route, $uibModalInstance, renderedEquip) {
+  .controller('removeEquipAlertCtrl', function ($scope, Equipament, $route, $uibModalInstance, resource) {
+    var modal = $uibModalInstance;
 
     $scope.remove = function () {
-      Equipament.remove(renderedEquip, function (res, err) {
+      Equipament.remove(resource, function (res, err) {
         if(res.$resolved){
           $route.reload();
-          $uibModalInstance.close();
+          modal.close();
         } else {
           $scope.error = err;
         }
@@ -106,19 +84,20 @@ angular.module('backstageApp')
     };
 
     $scope.cancel = function () {
-      $uibModalInstance.dismiss('cancel');
+      modal.dismiss('cancel');
     };
   })
-  .controller('updateEquipCtrl', function ($scope, Equipament, $route, $uibModalInstance, renderedEquip) {
-    $scope.equipament = renderedEquip;
+  .controller('updateEquipCtrl', function ($scope, Equipament, $route, $uibModalInstance, resource) {
+    var modal = $uibModalInstance;
+    $scope.equipament = resource;
 
     $scope.update = function (equipament) {
 
-      Equipament.update({id: renderedEquip.id}, equipament, function (res, err) {
+      Equipament.update({id: resource.id}, equipament, function (res, err) {
 
         if(res.$resolved){
           $route.reload();
-          $uibModalInstance.close();
+          modal.close();
         } else {
           $scope.error = err;
         }
@@ -126,8 +105,7 @@ angular.module('backstageApp')
     };
 
     $scope.cancel = function () {
-      $route.reload();
-      $uibModalInstance.dismiss('cancel');
+      modal.dismiss('cancel');
     };
 
   });

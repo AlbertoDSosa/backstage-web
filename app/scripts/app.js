@@ -17,9 +17,9 @@ angular
     'ngSanitize',
     'ngTouch',
     'ui.bootstrap',
-    'angular-toArrayFilter'
+    'LocalStorageModule'
   ])
-  .config(function ($routeProvider, $resourceProvider) {
+  .config(function ($routeProvider, $resourceProvider, localStorageServiceProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -45,6 +45,8 @@ angular
         redirectTo: '/'
       });
 
-       $resourceProvider.defaults.stripTrailingSlashes = false;
+    $resourceProvider.defaults.stripTrailingSlashes = false;
+    localStorageServiceProvider
+    .setPrefix('backstage');
 
   });

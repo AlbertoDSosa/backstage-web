@@ -23,9 +23,9 @@
         <td class="u-middle">{{equipament.model}}</td>
 
         <td class="u-middle">
-          <span id="{{'view_' + $index}}" ng-click="openViewEquip($event)" class="glyphicon glyphicon-eye-open"></span>
-          <span id="{{'edit_' + $index}}" ng-click="openUpdateEquip($event)" class="u-margin glyphicon glyphicon-pencil"></span>
-          <span id="{{'rm_' + $index}}" ng-click="openRemoveEquip($event)" class="u-margin glyphicon glyphicon-trash"></span>
+          <span id="{{'view_' + $index}}" ng-click="openViewEquip($event, equipaments)" class="glyphicon glyphicon-eye-open"></span>
+          <span id="{{'edit_' + $index}}" ng-click="openUpdateEquip($event, equipaments)" class="u-margin glyphicon glyphicon-pencil"></span>
+          <span id="{{'rm_' + $index}}" ng-click="openRemoveEquip($event, equipaments)" class="u-margin glyphicon glyphicon-trash"></span>
         </td>
       </tr>
     </table>
